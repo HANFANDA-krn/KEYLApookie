@@ -9,30 +9,28 @@ html, body, .container {
   font-family: 'Playfair Display', serif;
   overflow: hidden;
   color: #aaa;
+  position: relative;
 }
+
 .container {
   display: flex;
   position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 
 .left-side, .right-side {
-  position: relative;
   flex: 1;
-  overflow: hidden;
   background: transparent;
 }
 
-.bg-elements {
-  position: relative;
-  height: 100%;
+.balloons-container {
+  position: absolute;
+  top: 0; left: 0;
   width: 100%;
+  height: 100%;
   pointer-events: none;
-}
-
-/* Background utama dengan path folder images */
-body {
-  background: url('./images/background.jpg') no-repeat center center fixed;
-  background-size: cover;
+  z-index: 5; /* di bawah login */
 }
 
 .balloon {
@@ -41,12 +39,19 @@ body {
   height: 55px;
   pointer-events: none;
   user-select: none;
+  transition: transform 0.1s linear;
 }
 
 .balloon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* Background halaman login */
+body {
+  background: url('./images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 .login-wrapper {
