@@ -1,0 +1,272 @@
+/* Reset & base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body, .container {
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    position: relative;
+}
+
+/* LEFT & RIGHT backgrounds */
+.left-side, .right-side {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Warna latar kiri & kanan */
+.left-side { background-color: #a0a0a0; }  /* Abu abu */
+.right-side { background-color: #000000; } /* Hitam */
+
+/* Background shapes container */
+.bg-elements {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Pensil (simple rect with triangle) */
+.pencil {
+    background-color: #f2a365;
+    width: 80px;
+    height: 200px;
+    border-radius: 12px;
+    position: relative;
+    margin: 10px;
+    box-shadow: inset 0 0 20px #c87545;
+}
+
+.pencil::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid;
+    border-width: 30px 15px 0 15px;
+    border-color: #f7d492 transparent transparent transparent;
+    display: block;
+}
+
+/* Buku (rectangle + spine) */
+.book {
+    position: relative;
+    width: 120px;
+    height: 150px;
+    background: linear-gradient(90deg, #d4a5a5 25%, #8c5a5a 25%, #8c5a5a 35%, #d4a5a5 35%);
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.book::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 25%;
+    left: 0;
+    top: 0;
+    background-color: #704040;
+    border-radius: 10px 0 0 10px;
+}
+
+/* LOGIN WRAPPER + RINGS */
+
+.login-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login box di tengah */
+.login-box {
+    background-color: #fff;
+    width: 220px;
+    padding: 30px 20px;
+    border-radius: 8px;
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+/* Text styles */
+.title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* Button styles */
+#loginBtn {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#loginBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Rings styling */
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: transparent;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    /* will be overridden per ring */
+}
+
+/* 6 ring warna dan ukuran berbeda, posisi centered on login-wrapper */
+
+/* Ring 1 */
+.ring1 {
+    width: 280px;
+    height: 280px;
+    top: 50%;
+    left: 50%;
+    margin-left: -140px;
+    margin-top: -140px;
+    border-width: 2.5px;
+    border-top-color: #ff595e;
+    animation-name: rotateRing1;
+    animation-duration: 30s;
+}
+
+/* Ring 2 */
+.ring2 {
+    width: 260px;
+    height: 260px;
+    top: 50%;
+    left: 50%;
+    margin-left: -130px;
+    margin-top: -130px;
+    border-width: 3px;
+    border-right-color: #1982c4;
+    animation-name: rotateRing2;
+    animation-duration: 18s;
+}
+
+/* Ring 3 */
+.ring3 {
+    width: 240px;
+    height: 240px;
+    top: 50%;
+    left: 50%;
+    margin-left: -120px;
+    margin-top: -120px;
+    border-width: 2px;
+    border-bottom-color: #6a4c93;
+    animation-name: rotateRing3;
+    animation-duration: 25s;
+}
+
+/* Ring 4 */
+.ring4 {
+    width: 220px;
+    height: 220px;
+    top: 50%;
+    left: 50%;
+    margin-left: -110px;
+    margin-top: -110px;
+    border-width: 3px;
+    border-left-color: #ffca3a;
+    animation-name: rotateRing4;
+    animation-duration: 20s;
+}
+
+/* Ring 5 */
+.ring5 {
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+    border-width: 2.5px;
+    border-top-color: #8ac926;
+    animation-name: rotateRing5;
+    animation-duration: 28s;
+}
+
+/* Ring 6 */
+.ring6 {
+    width: 180px;
+    height: 180px;
+    top: 50%;
+    left: 50%;
+    margin-left: -90px;
+    margin-top: -90px;
+    border-width: 2px;
+    border-right-color: #1982c4;
+    animation-name: rotateRing6;
+    animation-duration: 35s;
+}
+
+/* Animasi rotasi berbagai arah dan kecepatan berbeda */
+@keyframes rotateRing1 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateRing2 {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes rotateRing3 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+@keyframes rotateRing4 {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+@keyframes rotateRing5 {
+    0% { transform: rotate(-360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes rotateRing6 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
