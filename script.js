@@ -1,60 +1,77 @@
 document.getElementById('loginBtn').addEventListener('click', () => {
-    window.location.href = 'main.html';
+  window.location.href = 'main.html';
 });
 
-// Buat 30 pensil dan 30 buku di kiri dan kanan dan animasi berjalan bebas
+const balloonImages = [
+  'b1.png',
+  'b2.png',
+  'b3.png',
+  'b4.png',
+  'b5.png',
+  'b6.png',
+  'b7.png'
+];
 
-const NUM_ITEMS = 30;
+const BALLOONS_PER_TYPE = 4;
 const leftContainer = document.querySelector('.left-side .bg-elements');
 const rightContainer = document.querySelector('.right-side .bg-elements');
 
-function createElement(type) {
-    const el = document.createElement('div');
-    el.classList.add(type);
-    el.style.top = Math.random() * 100 + '%';
-    el.style.left = Math.random() * 100 + '%';
-    el.style.animationDuration = (20 + Math.random() * 40) + 's';
-    el.style.animationDelay = (Math.random() * 20) + 's';
-    el.style.opacity = 0.3 + Math.random() * 0.4;
-    return el;
+function createBalloon(src) {
+  const div = document.createElement('div');
+  div.classList.add('balloon');
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = "Balon";
+  div.appendChild(img);
+
+  div.style.top = Math.random() * 100 + '%';
+  div.style.left = Math.random() * 100 + '%';
+  return div;
 }
 
 function animateMove(el) {
-    const container = el.parentElement;
-    let x = parseFloat(el.style.left);
-    let y = parseFloat(el.style.top);
-    let directionX = (Math.random() < 0.5 ? -1 : 1) * (0.1 + Math.random() * 0.2);
-    let directionY = (Math.random() < 0.5 ? -1 : 1) * (0.1 + Math.random() * 0.2);
+  let x = parseFloat(el.style.left);
+  let y = parseFloat(el.style.top);
+  let directionX = (Math.random() < 0.5 ? -1 : 1) * (0.05 + Math.random() * 0.15);
+  let directionY = (Math.random() < 0.5 ? -1 : 1) * (0.05 + Math.random() * 0.15);
 
-    function move() {
-        x += directionX;
-        y += directionY;
+  function move() {
+    x += directionX;
+    y += directionY;
 
-        // Boundary check (0% - 100%)
-        if (x < 0) { x = 0; directionX = -directionX; }
-        if (x > 100) { x = 100; directionX = -directionX; }
-        if (y < 0) { y = 0; directionY = -directionY; }
-        if (y > 100) { y = 100; directionY = -directionY; }
-
-        el.style.left = x + '%';
-        el.style.top = y + '%';
-
-        requestAnimationFrame(move);
+    if (x < 0) {
+      x = 0;
+      directionX = -directionX;
     }
-    move();
+    if (x > 100) {
+      x = 100;
+      directionX = -directionX;
+    }
+    if (y < 0) {
+      y = 0;
+      directionY = -directionY;
+    }
+    if (y > 100) {
+      y = 100;
+      directionY = -directionY;
+    }
+
+    el.style.left = x + '%';
+    el.style.top = y + '%';
+
+    requestAnimationFrame(move);
+  }
+  move();
 }
 
-// create and animate pensil and buku in container
 function populateContainer(container) {
-    for (let i = 0; i < NUM_ITEMS; i++) {
-        const pencil = createElement('pencil');
-        container.appendChild(pencil);
-        animateMove(pencil);
-        
-        const book = createElement('book');
-        container.appendChild(book);
-        animateMove(book);
+  balloonImages.forEach(src => {
+    for (let i = 0; i < BALLOONS_PER_TYPE; i++) {
+      const balloon = createBalloon(src);
+      container.appendChild(balloon);
+      animateMove(balloon);
     }
+  });
 }
 
 populateContainer(leftContainer);
