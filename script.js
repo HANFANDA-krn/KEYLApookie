@@ -2,14 +2,15 @@ document.getElementById('loginBtn').addEventListener('click', () => {
   window.location.href = 'main.html';
 });
 
+// Array path balon dengan folder images
 const balloonImages = [
-  'b1.png',
-  'b2.png',
-  'b3.png',
-  'b4.png',
-  'b5.png',
-  'b6.png',
-  'b7.png'
+  './images/b1.png',
+  './images/b2.png',
+  './images/b3.png',
+  './images/b4.png',
+  './images/b5.png',
+  './images/b6.png',
+  './images/b7.png'
 ];
 
 const BALLOONS_PER_TYPE = 4;
@@ -26,6 +27,10 @@ function createBalloon(src) {
 
   div.style.top = Math.random() * 100 + '%';
   div.style.left = Math.random() * 100 + '%';
+
+  // Debug gambar gagal load
+  img.onerror = () => console.error('Gagal load gambar balon:', src);
+
   return div;
 }
 
