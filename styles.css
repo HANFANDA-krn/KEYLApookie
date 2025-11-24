@@ -1,263 +1,192 @@
-/* Reset & base */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
 html, body, .container {
-    height: 100vh;
-    width: 100vw;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Playfair Display', serif;
+  overflow: hidden;
+  color: #aaa;
 }
-
 .container {
-    display: flex;
-    position: relative;
+  display: flex;
+  position: relative;
 }
 
 .left-side, .right-side {
-    position: relative;
-    flex: 1;
-    overflow: hidden;
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: transparent;
 }
 
-.left-side { background-color: #a0a0a0; }
-.right-side { background-color: #000; }
-
-/* Banyak elemen kecil pensil & buku di bg-elements */
 .bg-elements {
-    position: relative;
-    height: 100%;
-    width: 100%;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }
 
-/* Pensil & buku kecil bergerak,
-   kita buat 30 pensil dan 30 buku dengan animasi JS */
-
-.pencil, .book {
-    position: absolute;
-    width: 15px;
-    height: 40px;
-    opacity: 0.3;
-    border-radius: 4px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15);
-    animation-timing-function: linear;
+body {
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
-.pencil {
-    background-color: #f2a365;
+.balloon {
+  position: absolute;
+  width: 40px;
+  height: 55px;
+  pointer-events: none;
+  user-select: none;
 }
 
-.pencil::before {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-style: solid;
-    border-width: 6px 3px 0 3px;
-    border-color: #f7d492 transparent transparent transparent;
-    display: block;
+.balloon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
-
-.book {
-    width: 25px;
-    height: 30px;
-    background: linear-gradient(90deg, #d4a5a5 25%, #8c5a5a 25%, #8c5a5a 35%, #d4a5a5 35%);
-    border-radius: 4px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-
-.book::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 25%;
-    left: 0;
-    top: 0;
-    background-color: #704040;
-    border-radius: 4px 0 0 4px;
-}
-
-/* Login wrapper & rings */
 
 .login-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 280px;
-    height: 280px;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
-
-/* 6 Rings */
 
 .ring {
-    position: absolute;
-    border-radius: 50%;
-    border-style: solid;
-    border-color: transparent;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: transparent;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  pointer-events: none;
 }
 
-/* Colors */
 .ring.black {
-    border-color: transparent;
-    border-top-color: black;
+  border-color: transparent;
+  border-top-color: black;
 }
 .ring.gray {
-    border-color: transparent;
-    border-top-color: #888;
+  border-color: transparent;
+  border-top-color: #888;
 }
-
-/* Different sizes and positions */
 
 .ring1 {
-    width: 320px;
-    height: 320px;
-    top: 50%;
-    left: 50%;
-    margin-left: -160px;
-    margin-top: -160px;
-    border-width: 3px;
-    animation-name: rotateCW;
-    animation-duration: 30s;
+  width: 320px;
+  height: 320px;
+  top: 50%;
+  left: 50%;
+  margin-left: -160px;
+  margin-top: -160px;
+  border-width: 3px;
+  animation-name: rotateCW;
+  animation-duration: 30s;
 }
-
 .ring2 {
-    width: 290px;
-    height: 290px;
-    top: 50%;
-    left: 50%;
-    margin-left: -145px;
-    margin-top: -145px;
-    border-width: 2px;
-    animation-name: rotateCCW;
-    animation-duration: 22s;
+  width: 290px;
+  height: 290px;
+  top: 50%;
+  left: 50%;
+  margin-left: -145px;
+  margin-top: -145px;
+  border-width: 2px;
+  animation-name: rotateCCW;
+  animation-duration: 22s;
 }
-
 .ring3 {
-    width: 260px;
-    height: 260px;
-    top: 50%;
-    left: 50%;
-    margin-left: -130px;
-    margin-top: -130px;
-    border-width: 3px;
-    animation-name: rotateCW;
-    animation-duration: 25s;
+  width: 260px;
+  height: 260px;
+  top: 50%;
+  left: 50%;
+  margin-left: -130px;
+  margin-top: -130px;
+  border-width: 3px;
+  animation-name: rotateCW;
+  animation-duration: 25s;
 }
-
 .ring4 {
-    width: 230px;
-    height: 230px;
-    top: 50%;
-    left: 50%;
-    margin-left: -115px;
-    margin-top: -115px;
-    border-width: 2px;
-    animation-name: rotateCCW;
-    animation-duration: 20s;
+  width: 230px;
+  height: 230px;
+  top: 50%;
+  left: 50%;
+  margin-left: -115px;
+  margin-top: -115px;
+  border-width: 2px;
+  animation-name: rotateCCW;
+  animation-duration: 20s;
 }
-
 .ring5 {
-    width: 200px;
-    height: 200px;
-    top: 50%;
-    left: 50%;
-    margin-left: -100px;
-    margin-top: -100px;
-    border-width: 3px;
-    animation-name: rotateCW;
-    animation-duration: 27s;
+  width: 200px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin-left: -100px;
+  margin-top: -100px;
+  border-width: 3px;
+  animation-name: rotateCW;
+  animation-duration: 27s;
 }
-
 .ring6 {
-    width: 170px;
-    height: 170px;
-    top: 50%;
-    left: 50%;
-    margin-left: -85px;
-    margin-top: -85px;
-    border-width: 2px;
-    animation-name: rotateCCW;
-    animation-duration: 35s;
+  width: 170px;
+  height: 170px;
+  top: 50%;
+  left: 50%;
+  margin-left: -85px;
+  margin-top: -85px;
+  border-width: 2px;
+  animation-name: rotateCCW;
+  animation-duration: 35s;
 }
-
-/* Animasi */
 
 @keyframes rotateCW {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
-
 @keyframes rotateCCW {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(-360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
 }
-
-/* Shape abstrak hitam: tumpahan cat (blur + bentuk tak beraturan) */
-
-.abstract-shape {
-    position: relative;
-    width: 240px;
-    height: 140px;
-    background:
-        radial-gradient(circle at 30% 40%, rgba(0,0,0,0.6), transparent 40%),
-        radial-gradient(circle at 70% 60%, rgba(0,0,0,0.8), transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(0,0,0,0.7), transparent 47%);
-    border-radius: 40% 60% 45% 55% / 60% 40% 60% 40%;
-    filter: blur(4px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Login lines berada di atas shape */
 
 .login-lines {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    width: 100%;
-    font-weight: 600;
-    user-select: none;
+  color: #aaa;
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+  user-select: none;
 }
 
 .title {
-    font-size: 28px;
-    margin-bottom: 8px;
+  font-size: 28px;
+  margin-bottom: 8px;
 }
 
 .subtitle {
-    font-size: 18px;
-    margin-bottom: 20px;
-    font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 
-/* Tombol MASUK */
-
 #loginBtn {
-    padding: 10px 0;
-    width: 120px;
-    background-color: #222;
-    border: none;
-    border-radius: 25px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 10px 0;
+  width: 120px;
+  background-color: #222;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 #loginBtn:hover {
-    background-color: #555;
+  background-color: #555;
 }
