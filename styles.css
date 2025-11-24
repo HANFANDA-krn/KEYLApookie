@@ -29,8 +29,9 @@ html, body, .container {
   pointer-events: none;
 }
 
+/* Background utama dengan path folder images */
 body {
-  background: url('background.jpg') no-repeat center center fixed;
+  background: url('./images/background.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
