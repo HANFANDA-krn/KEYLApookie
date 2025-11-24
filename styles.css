@@ -9,7 +9,7 @@ html, body, .container {
     height: 100vh;
     width: 100vw;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .container {
@@ -17,38 +17,37 @@ html, body, .container {
     position: relative;
 }
 
-/* LEFT & RIGHT backgrounds */
 .left-side, .right-side {
     position: relative;
     flex: 1;
     overflow: hidden;
 }
 
-/* Warna latar kiri & kanan */
-.left-side { background-color: #a0a0a0; }  /* Abu abu */
-.right-side { background-color: #000000; } /* Hitam */
+.left-side { background-color: #a0a0a0; }
+.right-side { background-color: #000; }
 
-/* Background shapes container */
+/* Banyak elemen kecil pensil & buku di bg-elements */
 .bg-elements {
     position: relative;
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-around;
-    padding: 20px;
 }
 
-/* Pensil (simple rect with triangle) */
+/* Pensil & buku kecil bergerak,
+   kita buat 30 pensil dan 30 buku dengan animasi JS */
+
+.pencil, .book {
+    position: absolute;
+    width: 15px;
+    height: 40px;
+    opacity: 0.3;
+    border-radius: 4px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15);
+    animation-timing-function: linear;
+}
+
 .pencil {
     background-color: #f2a365;
-    width: 80px;
-    height: 200px;
-    border-radius: 12px;
-    position: relative;
-    margin: 10px;
-    box-shadow: inset 0 0 20px #c87545;
 }
 
 .pencil::before {
@@ -58,20 +57,17 @@ html, body, .container {
     left: 50%;
     transform: translateX(-50%);
     border-style: solid;
-    border-width: 30px 15px 0 15px;
+    border-width: 6px 3px 0 3px;
     border-color: #f7d492 transparent transparent transparent;
     display: block;
 }
 
-/* Buku (rectangle + spine) */
 .book {
-    position: relative;
-    width: 120px;
-    height: 150px;
+    width: 25px;
+    height: 30px;
     background: linear-gradient(90deg, #d4a5a5 25%, #8c5a5a 25%, #8c5a5a 35%, #d4a5a5 35%);
-    border-radius: 10px;
-    margin: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
 .book::before {
@@ -82,67 +78,24 @@ html, body, .container {
     left: 0;
     top: 0;
     background-color: #704040;
-    border-radius: 10px 0 0 10px;
+    border-radius: 4px 0 0 4px;
 }
 
-/* LOGIN WRAPPER + RINGS */
+/* Login wrapper & rings */
 
 .login-wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 280px;
+    height: 280px;
     transform: translate(-50%, -50%);
-    width: 240px;
-    height: 240px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Login box di tengah */
-.login-box {
-    background-color: #fff;
-    width: 220px;
-    padding: 30px 20px;
-    border-radius: 8px;
-    z-index: 10;
-    box-shadow: 0 0 20px rgba(0,0,0,0.25);
-    text-align: center;
-}
-
-/* Text styles */
-.title {
-    font-size: 28px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 12px;
-}
-
-.subtitle {
-    font-size: 18px;
-    font-weight: 400;
-    color: #555;
-    margin-bottom: 25px;
-}
-
-/* Button styles */
-#loginBtn {
-    width: 100%;
-    padding: 10px 0;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#loginBtn:hover {
-    background-color: #0056b3;
-}
-
-/* Rings styling */
+/* 6 Rings */
 
 .ring {
     position: absolute;
@@ -151,27 +104,45 @@ html, body, .container {
     border-color: transparent;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    /* will be overridden per ring */
 }
 
-/* 6 ring warna dan ukuran berbeda, posisi centered on login-wrapper */
+/* Colors */
+.ring.black {
+    border-color: transparent;
+    border-top-color: black;
+}
+.ring.gray {
+    border-color: transparent;
+    border-top-color: #888;
+}
 
-/* Ring 1 */
+/* Different sizes and positions */
+
 .ring1 {
-    width: 280px;
-    height: 280px;
+    width: 320px;
+    height: 320px;
     top: 50%;
     left: 50%;
-    margin-left: -140px;
-    margin-top: -140px;
-    border-width: 2.5px;
-    border-top-color: #ff595e;
-    animation-name: rotateRing1;
+    margin-left: -160px;
+    margin-top: -160px;
+    border-width: 3px;
+    animation-name: rotateCW;
     animation-duration: 30s;
 }
 
-/* Ring 2 */
 .ring2 {
+    width: 290px;
+    height: 290px;
+    top: 50%;
+    left: 50%;
+    margin-left: -145px;
+    margin-top: -145px;
+    border-width: 2px;
+    animation-name: rotateCCW;
+    animation-duration: 22s;
+}
+
+.ring3 {
     width: 260px;
     height: 260px;
     top: 50%;
@@ -179,40 +150,22 @@ html, body, .container {
     margin-left: -130px;
     margin-top: -130px;
     border-width: 3px;
-    border-right-color: #1982c4;
-    animation-name: rotateRing2;
-    animation-duration: 18s;
-}
-
-/* Ring 3 */
-.ring3 {
-    width: 240px;
-    height: 240px;
-    top: 50%;
-    left: 50%;
-    margin-left: -120px;
-    margin-top: -120px;
-    border-width: 2px;
-    border-bottom-color: #6a4c93;
-    animation-name: rotateRing3;
+    animation-name: rotateCW;
     animation-duration: 25s;
 }
 
-/* Ring 4 */
 .ring4 {
-    width: 220px;
-    height: 220px;
+    width: 230px;
+    height: 230px;
     top: 50%;
     left: 50%;
-    margin-left: -110px;
-    margin-top: -110px;
-    border-width: 3px;
-    border-left-color: #ffca3a;
-    animation-name: rotateRing4;
+    margin-left: -115px;
+    margin-top: -115px;
+    border-width: 2px;
+    animation-name: rotateCCW;
     animation-duration: 20s;
 }
 
-/* Ring 5 */
 .ring5 {
     width: 200px;
     height: 200px;
@@ -220,53 +173,91 @@ html, body, .container {
     left: 50%;
     margin-left: -100px;
     margin-top: -100px;
-    border-width: 2.5px;
-    border-top-color: #8ac926;
-    animation-name: rotateRing5;
-    animation-duration: 28s;
+    border-width: 3px;
+    animation-name: rotateCW;
+    animation-duration: 27s;
 }
 
-/* Ring 6 */
 .ring6 {
-    width: 180px;
-    height: 180px;
+    width: 170px;
+    height: 170px;
     top: 50%;
     left: 50%;
-    margin-left: -90px;
-    margin-top: -90px;
+    margin-left: -85px;
+    margin-top: -85px;
     border-width: 2px;
-    border-right-color: #1982c4;
-    animation-name: rotateRing6;
+    animation-name: rotateCCW;
     animation-duration: 35s;
 }
 
-/* Animasi rotasi berbagai arah dan kecepatan berbeda */
-@keyframes rotateRing1 {
+/* Animasi */
+
+@keyframes rotateCW {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-@keyframes rotateRing2 {
-    0% { transform: rotate(360deg); }
-    100% { transform: rotate(0deg); }
-}
-
-@keyframes rotateRing3 {
+@keyframes rotateCCW {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(-360deg); }
 }
 
-@keyframes rotateRing4 {
-    0% { transform: rotate(360deg); }
-    100% { transform: rotate(-360deg); }
+/* Shape abstrak hitam: tumpahan cat (blur + bentuk tak beraturan) */
+
+.abstract-shape {
+    position: relative;
+    width: 240px;
+    height: 140px;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(0,0,0,0.6), transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(0,0,0,0.8), transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,0.7), transparent 47%);
+    border-radius: 40% 60% 45% 55% / 60% 40% 60% 40%;
+    filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@keyframes rotateRing5 {
-    0% { transform: rotate(-360deg); }
-    100% { transform: rotate(0deg); }
+/* Login lines berada di atas shape */
+
+.login-lines {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+    user-select: none;
 }
 
-@keyframes rotateRing6 {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.title {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+/* Tombol MASUK */
+
+#loginBtn {
+    padding: 10px 0;
+    width: 120px;
+    background-color: #222;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#loginBtn:hover {
+    background-color: #555;
 }
