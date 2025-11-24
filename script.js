@@ -2,7 +2,6 @@ document.getElementById('loginBtn').addEventListener('click', () => {
   window.location.href = 'main.html';
 });
 
-// Array path balon dengan folder images
 const balloonImages = [
   './images/b1.png',
   './images/b2.png',
@@ -14,8 +13,7 @@ const balloonImages = [
 ];
 
 const BALLOONS_PER_TYPE = 4;
-const leftContainer = document.querySelector('.left-side .bg-elements');
-const rightContainer = document.querySelector('.right-side .bg-elements');
+const balloonsContainer = document.querySelector('.balloons-container');
 
 function createBalloon(src) {
   const div = document.createElement('div');
@@ -28,7 +26,6 @@ function createBalloon(src) {
   div.style.top = Math.random() * 100 + '%';
   div.style.left = Math.random() * 100 + '%';
 
-  // Debug gambar gagal load
   img.onerror = () => console.error('Gagal load gambar balon:', src);
 
   return div;
@@ -37,26 +34,27 @@ function createBalloon(src) {
 function animateMove(el) {
   let x = parseFloat(el.style.left);
   let y = parseFloat(el.style.top);
-  let directionX = (Math.random() < 0.5 ? -1 : 1) * (0.05 + Math.random() * 0.15);
-  let directionY = (Math.random() < 0.5 ? -1 : 1) * (0.05 + Math.random() * 0.15);
+
+  let directionX = (Math.random() < 0.5 ? -1 : 1) * (0.1 + Math.random() * 0.15);
+  let directionY = (Math.random() < 0.5 ? -1 : 1) * (0.1 + Math.random() * 0.15);
 
   function move() {
     x += directionX;
     y += directionY;
 
-    if (x < 0) {
+    if (x <= 0) {
       x = 0;
       directionX = -directionX;
     }
-    if (x > 100) {
+    if (x >= 100) {
       x = 100;
       directionX = -directionX;
     }
-    if (y < 0) {
+    if (y <= 0) {
       y = 0;
       directionY = -directionY;
     }
-    if (y > 100) {
+    if (y >= 100) {
       y = 100;
       directionY = -directionY;
     }
@@ -79,5 +77,4 @@ function populateContainer(container) {
   });
 }
 
-populateContainer(leftContainer);
-populateContainer(rightContainer);
+populateContainer(balloonsContainer);
