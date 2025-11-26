@@ -14,25 +14,22 @@ html, body, .container {
 
 .container {
   display: flex;
-  position: relative;
   height: 100vh;
   width: 100vw;
+  position: relative;
 }
-
 .left-side, .right-side {
   flex: 1;
   background: transparent;
 }
-
 .balloons-container {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 5; /* di bawah login */
+  z-index: 5;
 }
-
 .balloon {
   position: absolute;
   width: 40px;
@@ -41,19 +38,15 @@ html, body, .container {
   user-select: none;
   transition: transform 0.1s linear;
 }
-
 .balloon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-
-/* Background halaman login */
 body {
   background: url('./images/background.jpg') no-repeat center center fixed;
   background-size: cover;
 }
-
 .login-wrapper {
   position: absolute;
   top: 50%;
@@ -66,7 +59,6 @@ body {
   align-items: center;
   z-index: 10;
 }
-
 .ring {
   position: absolute;
   border-radius: 50%;
@@ -76,7 +68,6 @@ body {
   animation-timing-function: linear;
   pointer-events: none;
 }
-
 .ring.black {
   border-color: transparent;
   border-top-color: black;
@@ -85,7 +76,6 @@ body {
   border-color: transparent;
   border-top-color: #888;
 }
-
 .ring1 {
   width: 320px;
   height: 320px;
@@ -152,7 +142,6 @@ body {
   animation-name: rotateCCW;
   animation-duration: 35s;
 }
-
 @keyframes rotateCW {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -161,7 +150,6 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(-360deg); }
 }
-
 .login-lines {
   color: #aaa;
   text-align: center;
@@ -169,18 +157,15 @@ body {
   font-weight: 600;
   user-select: none;
 }
-
 .title {
   font-size: 28px;
   margin-bottom: 8px;
 }
-
 .subtitle {
   font-size: 18px;
   margin-bottom: 20px;
   font-weight: 400;
 }
-
 #loginBtn {
   padding: 10px 0;
   width: 120px;
@@ -192,21 +177,26 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 #loginBtn:hover {
   background-color: #555;
 }
 
-/* ===========================
-   Halaman Utama tanpa background animasi
-   Background diganti foto dari folder images
-============================== */
+/* ------------------------------
+  Halaman Utama tanpa teks, background foto
+------------------------------ */
 
 body.main-page {
   background: url('./images/background-main.jpg') no-repeat center center fixed;
   background-size: cover;
   color: white;
   font-family: 'Playfair Display', serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-content {
@@ -214,6 +204,73 @@ body.main-page {
   z-index: 10;
   width: 100vw;
   height: 100vh;
-  /* kosong, tanpa teks */
   user-select: none;
+}
+
+/* ========= Toggle Menu ========= */
+
+#toggleMenuWrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+/* Nickname iconToggle = pusat toggle menu */
+#iconToggle {
+  width: 40px;
+  height: 40px;
+  fill: white;
+  transition: transform 0.3s ease;
+}
+
+/* Nickname iconLeft = home icon kiri */
+#iconLeft, 
+/* Nickname iconRight = love icon kanan */
+#iconRight {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  fill: white;
+  top: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease, left 0.3s ease, right 0.3s ease;
+  cursor: pointer;
+  z-index: 19;
+}
+
+#iconLeft {
+  left: 50%;
+  margin-left: 0;
+}
+
+#iconRight {
+  right: 50%;
+  margin-right: 0;
+}
+
+.menu-open #iconLeft {
+  left: calc(50% - 80px);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-open #iconRight {
+  right: calc(50% - 80px);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-open #iconToggle {
+  transform: rotate(90deg);
 }
