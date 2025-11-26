@@ -1,36 +1,104 @@
-/* Reset dan dasar */
+/* Reset dasar */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-html, body, .container {
+html, body {
   height: 100vh;
   width: 100vw;
   font-family: 'Playfair Display', serif;
   overflow-x: hidden;
-  color: #aaa;
-  position: relative;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Container login */
+/* ------ HALAMAN PILIH PERANGKAT ------ */
+#choose-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.choose-option {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+.choose-option video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  width: auto;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.8);
+  pointer-events: none;
+}
+
+.btn-masuk {
+  position: relative;
+  z-index: 10;
+  background: rgba(255,255,255,0.85);
+  color: #333;
+  font-weight: 700;
+  font-size: 1.6rem;
+  padding: 12px 35px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+.btn-masuk:hover,
+.btn-masuk:focus {
+  background: #333;
+  color: white;
+  outline: none;
+}
+
+.choose-option:focus-within,
+.choose-option:hover {
+  filter: brightness(0.9);
+}
+
+.choose-option:hover video {
+  filter: brightness(1);
+}
+
+/* kecilkan font tombol di hp */
+@media screen and (max-width: 480px) {
+  .btn-masuk {
+    font-size: 1.3rem;
+    padding: 10px 25px;
+  }
+}
+
+/* ----- BAGIAN UMUM LOGIN ----- */
+
 .container {
   display: flex;
   height: 100vh;
   width: 100vw;
   position: relative;
-  background: url('./images/background.jpg') no-repeat center center fixed;
-  background-size: cover;
 }
 
-/* Left & Right tetap transparan */
 .left-side, .right-side {
   flex: 1;
   background: transparent;
 }
 
-/* Balon animasi tetap absolute */
 .balloons-container {
   position: absolute;
   top: 0; left: 0;
@@ -42,10 +110,8 @@ html, body, .container {
 
 .balloon {
   position: absolute;
-  width: 8vw;
-  max-width: 40px;
-  height: 11vw;
-  max-height: 55px;
+  width: 40px;
+  height: 55px;
   pointer-events: none;
   user-select: none;
   transition: transform 0.1s linear;
@@ -57,27 +123,26 @@ html, body, .container {
   object-fit: contain;
 }
 
-/* Wrapper login yg flexible, responsif */
-.login-wrapper {
+/* --- VERSI LAPTOP LOGIN --- */
+body.laptop-version {
+  background: url('./images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.laptop-version .login-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 70vw;
-  max-width: 300px;
-  height: auto;
-  padding: 20px;
-  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  transform: translate(-50%,-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
 }
 
-/* Cincin animasi */
-.ring {
+body.laptop-version .ring {
   position: absolute;
   border-radius: 50%;
   border-style: solid;
@@ -86,129 +151,169 @@ html, body, .container {
   animation-timing-function: linear;
   pointer-events: none;
 }
-
-.ring.black { border-top-color: black; }
-.ring.gray { border-top-color: #888; }
-
-.ring1 {
-  width: 320px;
-  height: 320px;
-  top: 50%;
-  left: 50%;
-  margin-left: -160px;
-  margin-top: -160px;
-  border-width: 3px;
-  animation-name: rotateCW;
-  animation-duration: 30s;
-}
-.ring2 {
-  width: 290px;
-  height: 290px;
-  top: 50%;
-  left: 50%;
-  margin-left: -145px;
-  margin-top: -145px;
-  border-width: 2px;
-  animation-name: rotateCCW;
-  animation-duration: 22s;
-}
-.ring3 {
-  width: 260px;
-  height: 260px;
-  top: 50%;
-  left: 50%;
-  margin-left: -130px;
-  margin-top: -130px;
-  border-width: 3px;
-  animation-name: rotateCW;
-  animation-duration: 25s;
-}
-.ring4 {
-  width: 230px;
-  height: 230px;
-  top: 50%;
-  left: 50%;
-  margin-left: -115px;
-  margin-top: -115px;
-  border-width: 2px;
-  animation-name: rotateCCW;
-  animation-duration: 20s;
-}
-.ring5 {
-  width: 200px;
-  height: 200px;
-  top: 50%;
-  left: 50%;
-  margin-left: -100px;
-  margin-top: -100px;
-  border-width: 3px;
-  animation-name: rotateCW;
-  animation-duration: 27s;
-}
-.ring6 {
-  width: 170px;
-  height: 170px;
-  top: 50%;
-  left: 50%;
-  margin-left: -85px;
-  margin-top: -85px;
-  border-width: 2px;
-  animation-name: rotateCCW;
-  animation-duration: 35s;
-}
+body.laptop-version .ring.black { border-top-color: black; }
+body.laptop-version .ring.gray { border-top-color: #888; }
+body.laptop-version .ring1 {width:320px;height:320px;top:50%;left:50%;margin-left:-160px;margin-top:-160px;border-width:3px;
+  animation-name: rotateCW; animation-duration: 30s;}
+body.laptop-version .ring2 {width:290px;height:290px;top:50%;left:50%;margin-left:-145px;margin-top:-145px;border-width:2px;
+  animation-name: rotateCCW; animation-duration: 22s;}
+body.laptop-version .ring3 {width:260px;height:260px;top:50%;left:50%;margin-left:-130px;margin-top:-130px;border-width:3px;
+  animation-name: rotateCW; animation-duration: 25s;}
+body.laptop-version .ring4 {width:230px;height:230px;top:50%;left:50%;margin-left:-115px;margin-top:-115px;border-width:2px;
+  animation-name: rotateCCW; animation-duration: 20s;}
+body.laptop-version .ring5 {width:200px;height:200px;top:50%;left:50%;margin-left:-100px;margin-top:-100px;border-width:3px;
+  animation-name: rotateCW; animation-duration:27s;}
+body.laptop-version .ring6 {width:170px;height:170px;top:50%;left:50%;margin-left:-85px;margin-top:-85px;border-width:2px;
+  animation-name: rotateCCW; animation-duration:35s;}
 
 @keyframes rotateCW {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(360deg);}
 }
 @keyframes rotateCCW {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(-360deg); }
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(-360deg);}
 }
 
-/* Login teks */
-.login-lines {
-  color: #aaa;
-  text-align: center;
-  font-weight: 600;
-  user-select: none;
-  width: 100%;
+body.laptop-version .login-lines {
+  color:#aaa;
+  text-align:center;
+  width:100%;
+  font-weight:600;
+  user-select:none;
 }
 
-.title {
-  font-size: 8vw;
-  max-font-size: 28px;
+body.laptop-version .title {
+  font-size: 28px;
   margin-bottom: 8px;
 }
 
-.subtitle {
-  font-size: 5vw;
-  max-font-size: 18px;
+body.laptop-version .subtitle {
+  font-size: 18px;
   margin-bottom: 20px;
   font-weight: 400;
 }
 
-#loginBtn {
+body.laptop-version #loginBtnLaptop {
+  padding: 10px 0;
+  width: 120px;
+  background-color: #222;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+body.laptop-version #loginBtnLaptop:hover {
+  background-color: #555;
+}
+
+/* ----- VERSI HP LOGIN ----- */
+
+body.hp-version {
+  background: url('./images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+
+body.hp-version .login-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90vw;
+  max-width: 320px;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  z-index: 10;
+}
+
+body.hp-version .ring {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: transparent;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  pointer-events: none;
+}
+body.hp-version .ring.black { border-top-color: black; }
+body.hp-version .ring.gray { border-top-color: #888; }
+body.hp-version .ring1 {width:320px;height:320px;top:50%;left:50%;margin-left:-160px;margin-top:-160px;border-width:3px;
+  animation-name: rotateCW; animation-duration: 30s;}
+body.hp-version .ring2 {width:290px;height:290px;top:50%;left:50%;margin-left:-145px;margin-top:-145px;border-width:2px;
+  animation-name: rotateCCW; animation-duration: 22s;}
+body.hp-version .ring3 {width:260px;height:260px;top:50%;left:50%;margin-left:-130px;margin-top:-130px;border-width:3px;
+  animation-name: rotateCW; animation-duration: 25s;}
+body.hp-version .ring4 {width:230px;height:230px;top:50%;left:50%;margin-left:-115px;margin-top:-115px;border-width:2px;
+  animation-name: rotateCCW; animation-duration: 20s;}
+body.hp-version .ring5 {width:200px;height:200px;top:50%;left:50%;margin-left:-100px;margin-top:-100px;border-width:3px;
+  animation-name: rotateCW; animation-duration: 27s;}
+body.hp-version .ring6 {width:170px;height:170px;top:50%;left:50%;margin-left:-85px;margin-top:-85px;border-width:2px;
+  animation-name: rotateCCW; animation-duration: 35s;}
+
+body.hp-version .login-lines {
+  color: #aaa;
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+  user-select: none;
+}
+
+body.hp-version .title {
+  font-size: 6vw;
+  margin-bottom: 8px;
+}
+
+body.hp-version .subtitle {
+  font-size: 4vw;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+body.hp-version #loginBtnHP {
   padding: 12px 0;
   width: 80vw;
-  max-width: 200px;
+  max-width: 280px;
   background-color: #222;
   border: none;
   border-radius: 25px;
   color: white;
   font-weight: 600;
   font-size: 5vw;
-  max-font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-#loginBtn:hover {
+body.hp-version #loginBtnHP:hover {
   background-color: #555;
 }
 
-/* Halaman utama responsive */
-body.main-page {
+/* ----- HALAMAN UTAMA ----- */
+
+body.laptop-version.main-page {
+  background: url('./images/background-main.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.laptop-version.main-page .main-content {
+  width: 100vw;
+  height: 100vh;
+  user-select: none;
+}
+
+body.hp-version.main-page {
   background: url('./images/background-main.jpg') no-repeat center center fixed;
   background-size: cover;
   color: white;
@@ -223,25 +328,19 @@ body.main-page {
   padding: 0 10px;
 }
 
-.main-content {
-  position: relative;
-  z-index: 10;
+body.hp-version.main-page .main-content {
   width: 100vw;
   height: 100vh;
   user-select: none;
 }
 
-/* Toggle Menu tetap responsive */
+/* Toggle menu common */
 #toggleMenuWrapper {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 20;
-  width: 10vw;
-  max-width: 48px;
-  height: 10vw;
-  max-height: 48px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -249,7 +348,61 @@ body.main-page {
   user-select: none;
 }
 
-#iconToggle {
+/* Ukuran toggle di desktop */
+body.laptop-version #toggleMenuWrapper {
+  width: 48px;
+  height: 48px;
+}
+body.laptop-version #iconToggle {
+  width: 40px;
+  height: 40px;
+  fill: white;
+  transition: transform 0.3s ease;
+}
+body.laptop-version #iconLeft,
+body.laptop-version #iconRight {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  fill: white;
+  top: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease, left 0.3s ease, right 0.3s ease;
+  cursor: pointer;
+  z-index: 19;
+}
+body.laptop-version #iconLeft {
+  left: 50%;
+  margin-left: 0;
+}
+body.laptop-version #iconRight {
+  right: 50%;
+  margin-right: 0;
+}
+body.laptop-version.menu-open #iconLeft {
+  left: calc(50% - 80px);
+  opacity: 1;
+  pointer-events: auto;
+}
+body.laptop-version.menu-open #iconRight {
+  right: calc(50% - 80px);
+  opacity: 1;
+  pointer-events: auto;
+}
+body.laptop-version.menu-open #iconToggle {
+  transform: rotate(90deg);
+}
+
+/* Ukuran toggle di HP */
+body.hp-version #toggleMenuWrapper {
+  width: 10vw;
+  max-width: 48px;
+  height: 10vw;
+  max-height: 48px;
+}
+body.hp-version #iconToggle {
   width: 8vw;
   max-width: 40px;
   height: 8vw;
@@ -257,9 +410,8 @@ body.main-page {
   fill: white;
   transition: transform 0.3s ease;
 }
-
-#iconLeft,
-#iconRight {
+body.hp-version #iconLeft,
+body.hp-version #iconRight {
   position: fixed;
   width: 7vw;
   max-width: 36px;
@@ -274,76 +426,24 @@ body.main-page {
   cursor: pointer;
   z-index: 19;
 }
-
-#iconLeft {
+body.hp-version #iconLeft {
   left: 50%;
   margin-left: 0;
 }
-
-#iconRight {
+body.hp-version #iconRight {
   right: 50%;
   margin-right: 0;
 }
-
-.menu-open #iconLeft {
+body.hp-version.menu-open #iconLeft {
   left: calc(50% - 16vw);
   opacity: 1;
   pointer-events: auto;
 }
-
-.menu-open #iconRight {
+body.hp-version.menu-open #iconRight {
   right: calc(50% - 16vw);
   opacity: 1;
   pointer-events: auto;
 }
-
-.menu-open #iconToggle {
+body.hp-version.menu-open #iconToggle {
   transform: rotate(90deg);
-}
-
-/* --------------------------------
-  Media Query untuk layar kecil (max 480px)
----------------------------------- */
-@media screen and (max-width: 480px) {
-  .login-wrapper {
-    width: 90vw;
-    padding: 15px;
-  }
-
-  .title {
-    font-size: 24px;
-  }
-
-  .subtitle {
-    font-size: 16px;
-  }
-
-  #loginBtn {
-    font-size: 16px;
-    width: 100%;
-  }
-
-  #toggleMenuWrapper {
-    width: 44px;
-    height: 44px;
-  }
-
-  #iconToggle {
-    width: 36px;
-    height: 36px;
-  }
-
-  #iconLeft,
-  #iconRight {
-    width: 32px;
-    height: 32px;
-  }
-
-  .menu-open #iconLeft {
-    left: calc(50% - 72px);
-  }
-
-  .menu-open #iconRight {
-    right: calc(50% - 72px);
-  }
 }
