@@ -1,9 +1,8 @@
-// Login button redirect
 document.getElementById('loginBtn')?.addEventListener('click', () => {
   window.location.href = 'main.html';
 });
 
-// Balloon animasi login page (tetap)
+// Balloon animasi login page
 const balloonImages = [
   './images/b1.png',
   './images/b2.png',
@@ -88,6 +87,4 @@ document.addEventListener('DOMContentLoaded', () => {
   toggleWrapper.addEventListener('click', () => {
     body.classList.toggle('menu-open');
   });
-
-  // Bisa tambah event klik pada iconLeft / iconRight jika ingin fungsional tambahan
 });
