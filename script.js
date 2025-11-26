@@ -1,7 +1,9 @@
-document.getElementById('loginBtn').addEventListener('click', () => {
+// Login button redirect
+document.getElementById('loginBtn')?.addEventListener('click', () => {
   window.location.href = 'main.html';
 });
 
+// Balloon animasi login page (tetap)
 const balloonImages = [
   './images/b1.png',
   './images/b2.png',
@@ -67,14 +69,25 @@ function animateMove(el) {
   move();
 }
 
-function populateContainer(container) {
+if(balloonsContainer) {
   balloonImages.forEach(src => {
     for (let i = 0; i < BALLOONS_PER_TYPE; i++) {
       const balloon = createBalloon(src);
-      container.appendChild(balloon);
+      balloonsContainer.appendChild(balloon);
       animateMove(balloon);
     }
   });
 }
 
-populateContainer(balloonsContainer);
+// Toggle menu halaman utama
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const toggleWrapper = document.getElementById('toggleMenuWrapper');
+  if (!toggleWrapper) return;
+
+  toggleWrapper.addEventListener('click', () => {
+    body.classList.toggle('menu-open');
+  });
+
+  // Bisa tambah event klik pada iconLeft / iconRight jika ingin fungsional tambahan
+});
