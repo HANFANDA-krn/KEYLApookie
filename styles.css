@@ -1,3 +1,4 @@
+/* Reset dan dasar */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,21 +8,29 @@ html, body, .container {
   height: 100vh;
   width: 100vw;
   font-family: 'Playfair Display', serif;
-  overflow: hidden;
+  overflow-x: hidden;
   color: #aaa;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* Container login */
 .container {
   display: flex;
   height: 100vh;
   width: 100vw;
   position: relative;
+  background: url('./images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
+
+/* Left & Right tetap transparan */
 .left-side, .right-side {
   flex: 1;
   background: transparent;
 }
+
+/* Balon animasi tetap absolute */
 .balloons-container {
   position: absolute;
   top: 0; left: 0;
@@ -30,35 +39,44 @@ html, body, .container {
   pointer-events: none;
   z-index: 5;
 }
+
 .balloon {
   position: absolute;
-  width: 40px;
-  height: 55px;
+  width: 8vw;
+  max-width: 40px;
+  height: 11vw;
+  max-height: 55px;
   pointer-events: none;
   user-select: none;
   transition: transform 0.1s linear;
 }
+
 .balloon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-body {
-  background: url('./images/background.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
+
+/* Wrapper login yg flexible, responsif */
 .login-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 280px;
-  height: 280px;
+  width: 70vw;
+  max-width: 300px;
+  height: auto;
+  padding: 20px;
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   z-index: 10;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
+
+/* Cincin animasi */
 .ring {
   position: absolute;
   border-radius: 50%;
@@ -68,14 +86,10 @@ body {
   animation-timing-function: linear;
   pointer-events: none;
 }
-.ring.black {
-  border-color: transparent;
-  border-top-color: black;
-}
-.ring.gray {
-  border-color: transparent;
-  border-top-color: #888;
-}
+
+.ring.black { border-top-color: black; }
+.ring.gray { border-top-color: #888; }
+
 .ring1 {
   width: 320px;
   height: 320px;
@@ -142,6 +156,7 @@ body {
   animation-name: rotateCCW;
   animation-duration: 35s;
 }
+
 @keyframes rotateCW {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -150,41 +165,49 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(-360deg); }
 }
+
+/* Login teks */
 .login-lines {
   color: #aaa;
   text-align: center;
-  width: 100%;
   font-weight: 600;
   user-select: none;
+  width: 100%;
 }
+
 .title {
-  font-size: 28px;
+  font-size: 8vw;
+  max-font-size: 28px;
   margin-bottom: 8px;
 }
+
 .subtitle {
-  font-size: 18px;
+  font-size: 5vw;
+  max-font-size: 18px;
   margin-bottom: 20px;
   font-weight: 400;
 }
+
 #loginBtn {
-  padding: 10px 0;
-  width: 120px;
+  padding: 12px 0;
+  width: 80vw;
+  max-width: 200px;
   background-color: #222;
   border: none;
   border-radius: 25px;
   color: white;
   font-weight: 600;
+  font-size: 5vw;
+  max-font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 #loginBtn:hover {
   background-color: #555;
 }
 
-/* ------------------------------
-  Halaman Utama tanpa teks, background foto
------------------------------- */
-
+/* Halaman utama responsive */
 body.main-page {
   background: url('./images/background-main.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -197,6 +220,7 @@ body.main-page {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 10px;
 }
 
 .main-content {
@@ -207,16 +231,17 @@ body.main-page {
   user-select: none;
 }
 
-/* ========= Toggle Menu ========= */
-
+/* Toggle Menu tetap responsive */
 #toggleMenuWrapper {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 20;
-  width: 48px;
-  height: 48px;
+  width: 10vw;
+  max-width: 48px;
+  height: 10vw;
+  max-height: 48px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -224,21 +249,22 @@ body.main-page {
   user-select: none;
 }
 
-/* Nickname iconToggle = pusat toggle menu */
 #iconToggle {
-  width: 40px;
-  height: 40px;
+  width: 8vw;
+  max-width: 40px;
+  height: 8vw;
+  max-height: 40px;
   fill: white;
   transition: transform 0.3s ease;
 }
 
-/* Nickname iconLeft = home icon kiri */
-#iconLeft, 
-/* Nickname iconRight = love icon kanan */
+#iconLeft,
 #iconRight {
   position: fixed;
-  width: 36px;
-  height: 36px;
+  width: 7vw;
+  max-width: 36px;
+  height: 7vw;
+  max-height: 36px;
   fill: white;
   top: 50%;
   opacity: 0;
@@ -260,17 +286,64 @@ body.main-page {
 }
 
 .menu-open #iconLeft {
-  left: calc(50% - 80px);
+  left: calc(50% - 16vw);
   opacity: 1;
   pointer-events: auto;
 }
 
 .menu-open #iconRight {
-  right: calc(50% - 80px);
+  right: calc(50% - 16vw);
   opacity: 1;
   pointer-events: auto;
 }
 
 .menu-open #iconToggle {
   transform: rotate(90deg);
+}
+
+/* --------------------------------
+  Media Query untuk layar kecil (max 480px)
+---------------------------------- */
+@media screen and (max-width: 480px) {
+  .login-wrapper {
+    width: 90vw;
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  #loginBtn {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  #toggleMenuWrapper {
+    width: 44px;
+    height: 44px;
+  }
+
+  #iconToggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  #iconLeft,
+  #iconRight {
+    width: 32px;
+    height: 32px;
+  }
+
+  .menu-open #iconLeft {
+    left: calc(50% - 72px);
+  }
+
+  .menu-open #iconRight {
+    right: calc(50% - 72px);
+  }
 }
