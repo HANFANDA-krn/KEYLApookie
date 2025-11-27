@@ -3,35 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pilih Versi Website dengan Animasi</title>
+  <title>Pilih Versi Website dengan Animasi di Border</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div id="choose-container">
-    <!-- Video Laptop -->
-    <div class="choose-option" id="chooseLaptop" tabindex="0" role="button" aria-label="Pilih versi Laptop">
-      <!-- Nickname videoLaptop -->
-      <video id="videoLaptop" autoplay muted loop playsinline>
-        <source src="./animations/anim-laptop.mp4" type="video/mp4" />
-        Browser kamu tidak mendukung video Laptop.
-      </video>
+
+    <!-- Kotak BORDER KIRI - Laptop -->
+    <div class="choose-option border-box" id="chooseLaptop" tabindex="0" role="button" aria-label="Pilih versi Laptop">
+      <div class="video-wrapper">
+        <video id="videoLaptop" autoplay muted loop playsinline>
+          <source src="./animations/anim-laptop.webm" type="video/webm" />
+          <source src="./animations/anim-laptop.mp4" type="video/mp4" />
+          Browser kamu tidak mendukung video Laptop.
+        </video>
+      </div>
       <button class="btn-masuk" aria-label="Masuk ke Website Laptop">MASUK</button>
     </div>
 
-    <!-- Video HP -->
-    <div class="choose-option" id="chooseHP" tabindex="0" role="button" aria-label="Pilih versi HP">
-      <!-- Nickname videoHP -->
-      <video id="videoHP" autoplay muted loop playsinline>
-        <source src="./animations/anim-hp.mp4" type="video/mp4" />
-        Browser kamu tidak mendukung video HP.
-      </video>
+    <!-- Kotak BORDER KANAN - HP -->
+    <div class="choose-option border-box" id="chooseHP" tabindex="0" role="button" aria-label="Pilih versi HP">
+      <div class="video-wrapper">
+        <video id="videoHP" autoplay muted loop playsinline>
+          <source src="./animations/anim-hp.webm" type="video/webm" />
+          <source src="./animations/anim-hp.mp4" type="video/mp4" />
+          Browser kamu tidak mendukung video HP.
+        </video>
+      </div>
       <button class="btn-masuk" aria-label="Masuk ke Website HP">MASUK</button>
     </div>
+
   </div>
 
   <script src="script.js"></script>
   <script>
-    // Navigasi saat klik tombol MASUK di halaman pilih perangkat
     document.getElementById('chooseLaptop').querySelector('.btn-masuk').addEventListener('click', () => {
       window.location.href = 'login-laptop.html';
     });
@@ -39,16 +44,14 @@
       window.location.href = 'login-hp.html';
     });
 
-    // Keyboard accessibility untuk keseluruhan option
     ['chooseLaptop', 'chooseHP'].forEach(id => {
       const el = document.getElementById(id);
       el.addEventListener('keydown', e => {
-        if(e.key === 'Enter' || e.key === ' '){
+        if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           el.querySelector('.btn-masuk').click();
         }
       });
-      // Klik area selain tombol juga trigger tombol
       el.addEventListener('click', e => {
         if(e.target.tagName !== 'BUTTON'){
           el.querySelector('.btn-masuk').click();
